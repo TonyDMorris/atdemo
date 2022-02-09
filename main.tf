@@ -5,7 +5,13 @@
       version = "~> 2.13.0"
     }
   }
+   backend "local" {
+    path = "./terraform.tfstate"
+  }
 }
+
+
+
 
 provider "docker" {}
 

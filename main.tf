@@ -12,12 +12,16 @@ provider "docker" {
 }
 
 # Pulls the image
-resource "docker_image" "ubuntu" {
-  name = "ubuntu:latest"
+resource "docker_image" "nginx" {
+  name         = "nginx:latest"
+  keep_locally = false
 }
 
-# Create a container
-resource "docker_container" "foo" {
-  image = docker_image.ubuntu.latest
-  name  = "foo"
+resource "docker_container" "nginx" {
+  image = docker_image.nginx.latest
+  name  = "tutorial"
+  ports {
+    internal = 80
+    external = 8000
+  }
 }
